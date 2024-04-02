@@ -62,8 +62,8 @@ except:
     exit()  # Exit the script if the port cannot be opened                                    
                                                                                               
                                                                                               
-relay1_ON = [1, 6, 0, 0, 0, 255, 201, 185]                                                                                                                                       
-relay1_OFF = [1, 6, 0, 0, 0, 0, 137, 249]                                                     
+relay1_ON = [2, 6, 0, 0, 0, 255, 201, 185]                                                                                                                                       
+relay1_OFF = [2, 6, 0, 0, 0, 0, 137, 249]                                                     
                                                                                               
 message_on = bytes(relay1_ON[0:5])
 message_off = bytes(relay1_OFF[0:5])
