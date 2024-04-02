@@ -109,7 +109,10 @@ def readTemperature():
                                                                                               
                                                                                               
 soil_moisture = [1, 3, 0, 7, 0, 1, 53, 203]                                                   
-                                                                                              
+
+soil_moisture[6]=crc16_modbus_recheck(byte(soil_moisture[0:6]))
+soil_moisture[7]=crc16_modbus_recheck(byte(soil_moisture[0:6]))
+
 def readMoisture():                                                                                                                                                             
     serial_read_data()                                                                        
     ser.write(soil_moisture)                                                                                                                                                          
@@ -118,18 +121,18 @@ def readMoisture():
                                                                                               
                                                                                               
 while True:                                                                                   
-    print("TEST ACTUATOR")                                                                                                                                                  
-    setDevice1(True)                                                                                                                                                            
-    time.sleep(2)                                                                                                                                                              
+    # print("TEST ACTUATOR")                                                                                                                                                  
+    # setDevice1(True)                                                                                                                                                            
+    # time.sleep(2)                                                                                                                                                              
     # setDevice1(False)                                                                                                                                                          
     # time.sleep(2)                                                                             
                                                                                                                                                                                    
     # print("TEST SENSOR")                                                                      
                                                                                   
-    # print("Moisture: ")                                                                       
+    print("Moisture: ")                                                                       
                                                                                               
-    # print(readMoisture())                                                                                                                                                           
-    # time.sleep(1)                                                                                                                                                                    
+    print(readMoisture())                                                                                                                                                           
+    time.sleep(1)                                                                                                                                                                    
     # print("Temperature: ")                                                                                                                                                           
     # print(readTemperature())                                                                                                                                                    
     # time.sleep(1)
