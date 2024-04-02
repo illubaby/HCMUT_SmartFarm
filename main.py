@@ -70,8 +70,8 @@ message_off = bytes(relay1_OFF[0:5])
 
 
 # Splitting the result into two bytes
-relay1_ON[6] ,relay1_ON[7] = crc16_modbus_recheck(bytes(relay1_ON[0:5]))
-relay1_OFF[6] ,relay1_OFF[7] = crc16_modbus_recheck(bytes(relay1_OFF[0:5]))
+relay1_ON[6] ,relay1_ON[7] = crc16_modbus_recheck(bytes(relay1_ON[0:6]))
+relay1_OFF[6] ,relay1_OFF[7] = crc16_modbus_recheck(bytes(relay1_OFF[0:6]))
 
 print(relay1_ON)                                 
                                                                                               
