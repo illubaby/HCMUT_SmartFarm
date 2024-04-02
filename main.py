@@ -2,12 +2,9 @@ import time
 import serial.tools.list_ports                                                                
                                                                                               
                                                                                               
-def getPort():                                                                                
-                                                                                        
-    ports = serial.tools.list_ports.comports()                                                
-                                                                                              
-    N = len(ports)                                                                            
-                                                                                              
+def getPort():                                                                                                                                                       
+    ports = serial.tools.list_ports.comports()                                                                                                                              
+    N = len(ports)                                                                                                                                                              
     commPort = "None"                                                                         
                                                                                               
     for i in range(0, N):                                                                     
@@ -92,52 +89,35 @@ def serial_read_data():
                                                                                               
 soil_temperature = [1, 3, 0, 6, 0, 1, 100, 11]                                                
                                                                                               
-def readTemperature():                                                                        
-                                                                                              
-    serial_read_data()                                                                        
-                                                                                              
-    ser.write(soil_temperature)                                                               
-                                                                                              
-    time.sleep(1)                                                                             
-                                                                                              
+def readTemperature():                                                                                                                                                                
+    serial_read_data()                                                                                                                                                            
+    ser.write(soil_temperature)                                                                                                                                                    
+    time.sleep(1)                                                                                                                                                               
     return serial_read_data()                                                                 
                                                                                               
                                                                                               
 soil_moisture = [1, 3, 0, 7, 0, 1, 53, 203]                                                   
                                                                                               
-def readMoisture():                                                                           
-                                                                                              
+def readMoisture():                                                                                                                                                             
     serial_read_data()                                                                        
-                                                                                              
-    ser.write(soil_moisture)                                                                  
-                                                                                              
-    time.sleep(1)                                                                             
-                                                                                              
+    ser.write(soil_moisture)                                                                                                                                                          
+    time.sleep(1)                                                                                                                                                                       
     return serial_read_data()                                                                 
                                                                                               
                                                                                               
 while True:                                                                                   
-    print("TEST ACTUATOR")                                                                    
+    print("TEST ACTUATOR")                                                                                                                                                  
+    setDevice1(True)                                                                                                                                                            
+    time.sleep(2)                                                                                                                                                              
+    # setDevice1(False)                                                                                                                                                          
+    # time.sleep(2)                                                                             
+                                                                                                                                                                                   
+    # print("TEST SENSOR")                                                                      
+                                                                                  
+    # print("Moisture: ")                                                                       
                                                                                               
-    setDevice1(True)                                                                          
-                                                                                              
-    time.sleep(2)                                                                             
-                                                                                              
-    setDevice1(False)                                                                         
-                                                                                              
-    time.sleep(2)                                                                             
-                                                                                              
-                                                                                              
-    print("TEST SENSOR")                                                                      
-                                                                                              
-    print("Moisture: ")                                                                       
-                                                                                              
-    print(readMoisture())                                                                     
-                                                                                              
-    time.sleep(1)                                                                             
-                                                                                              
-    print("Temperature: ")                                                                    
-                                                                                              
-    print(readTemperature())                                                                  
-                                                                                              
-    time.sleep(1)
+    # print(readMoisture())                                                                                                                                                           
+    # time.sleep(1)                                                                                                                                                                    
+    # print("Temperature: ")                                                                                                                                                           
+    # print(readTemperature())                                                                                                                                                    
+    # time.sleep(1)
