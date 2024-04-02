@@ -1,15 +1,15 @@
 import time                                                                                                                                                                   
 import serial.tools.list_ports                                                                
 
-def crc16_modbus(data):
+def crc16_modbus_recheck(data):
     """
-    Calculate the CRC-16 for a given string of bytes. Designed for Modbus or other systems using the same CRC algorithm.
+    Recheck the CRC-16 calculation for a given string of bytes using the Modbus protocol.
     
     Args:
-    - data: A bytes object containing the message for which the CRC should be calculated.
+    - data: A bytes object containing the message for which the CRC should be recalculated.
     
     Returns:
-    - The CRC-16 as a 2-byte integer.
+    - A tuple containing the CRC-16 as two separate bytes (low byte, high byte).
     """
     crc = 0xFFFF
     for pos in data:
@@ -20,7 +20,7 @@ def crc16_modbus(data):
                 crc ^= 0xA001
             else:
                 crc >>= 1
-    return crc
+    return crc & 0xFF, (crc >> 8) & 0xFF
 
 # Example usage with the message before CRC calculation
                                                                                               
@@ -68,17 +68,12 @@ relay1_OFF = [1, 6, 0, 0, 0, 0, 137, 249]
 message_on = bytes(relay1_ON[0:5])
 message_off = bytes(relay1_OFF[0:5])
 
-crc_result_on=crc16_modbus(message_on)
-crc_result_off=crc16_modbus(message_off)
-
 
 # Splitting the result into two bytes
-relay1_ON[6] = crc_result_on & 0xFF
-relay1_ON[7] = (crc_result_on >> 8) & 0xFF
-relay1_OFF[6] = crc_result_off & 0xFF
-relay1_OFF[7] = (crc_result_off >> 8) & 0xFF
+relay1_ON[6] ,relay1_ON[7] = crc16_modbus_recheck(bytes(relay1_ON[0:5]))
+relay1_OFF[6] ,relay1_OFF[7] = crc16_modbus_recheck(bytes(relay1_OFF[0:5]))
 
-                                                                         
+print(relay1_ON)                                 
                                                                                               
 def setDevice1(state):                                                                                                                                                   
     if state == True:                                                                                                                                                   
