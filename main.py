@@ -40,50 +40,31 @@ except:
     exit()  # Exit the script if the port cannot be opened                                    
                                                                                               
                                                                                               
-relay1_ON = [2, 6, 0, 0, 0, 255, 185, 91]                                                     
-                                                                                              
+relay1_ON = [2, 6, 0, 0, 0, 255, 91, 185]                                                                                                                                       
 relay1_OFF = [2, 6, 0, 0, 0, 0, 137, 249]                                                     
                                                                                               
                                                                                               
-def setDevice1(state):                                                                        
-                                                                                              
-    if state == True:                                                                         
-                                                                                              
-        ser.write(relay1_ON)                                                                  
-                                                                                              
-    else:                                                                                     
-                                                                                              
-        ser.write(relay1_OFF)                                                                 
-                                                                                              
-    time.sleep(1)                                                                             
-                                                                                              
+def setDevice1(state):                                                                                                                                                   
+    if state == True:                                                                                                                                                   
+        ser.write(relay1_ON)                                                                                                                                                 
+    else:                                                                                                                                                                       
+        ser.write(relay1_OFF)                                                                                                                                                  
+    time.sleep(1)                                                                                                                                                             
     print(serial_read_data())                                                                 
                                                                                               
                                                                                               
-def serial_read_data():                                                                       
-                                                                                              
-    bytesToRead = ser.inWaiting()                                                             
-                                                                                              
-    if bytesToRead > 0:                                                                       
-                                                                                              
-        out = ser.read(bytesToRead)                                                           
-                                                                                              
-        data_array = [b for b in out]                                                         
-                                                                                              
-        print(data_array)                                                                     
-                                                                                              
-        if len(data_array) >= 7:                                                              
-                                                                                              
-            array_size = len(data_array)                                                      
-                                                                                              
-            value = data_array[array_size - 4] * 256 + data_array[array_size - 3]             
-                                                                                              
-            return value                                                                      
-                                                                                              
-        else:                                                                                 
-                                                                                              
-            return -1                                                                         
-                                                                                              
+def serial_read_data():                                                                                                                                                       
+    bytesToRead = ser.inWaiting()                                                                                                                                              
+    if bytesToRead > 0:                                                                                                                                                        
+        out = ser.read(bytesToRead)                                                                                                                                           
+        data_array = [b for b in out]                                                                                                                                         
+        print(data_array)                                                                                                                                                     
+        if len(data_array) >= 7:                                                                                                                                            
+            array_size = len(data_array)                                                                                                                                   
+            value = data_array[array_size - 4] * 256 + data_array[array_size - 3]                                                                                      
+            return value                                                                                                                                                       
+        else:                                                                                                                                                                 
+            return -1                                                                                                                                                          
     return 0                                                                                  
                                                                                               
                                                                                               
