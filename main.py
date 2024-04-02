@@ -40,7 +40,7 @@ except:
     exit()  # Exit the script if the port cannot be opened                                    
                                                                                               
                                                                                               
-relay1_ON = [2, 6, 0, 0, 0, 255, 91, 185]                                                                                                                                       
+relay1_ON = [2, 6, 0, 0, 0, 255, 201, 185]                                                                                                                                       
 relay1_OFF = [2, 6, 0, 0, 0, 0, 137, 249]                                                     
                                                                                               
                                                                                               
