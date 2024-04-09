@@ -4,7 +4,6 @@ import random
 from Adafruit_IO import MQTTClient
 AIO_FEED_ID = ["sonar"]
 AIO_USERNAME = "Jun_nior_123"
-# AIO_KEY = "aio_Rxoi64znUPhJb8BYIJ1gIWW1Ysgd"
 
 def connected(client):
     print("Ket noi thanh cong ...")
