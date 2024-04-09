@@ -1,1 +1,1 @@
-AIO_USERNAME = "Jun_nior_123"
+Jun_nior_123

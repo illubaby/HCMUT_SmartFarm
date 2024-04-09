@@ -3,8 +3,8 @@ import time
 import random
 from Adafruit_IO import MQTTClient
 AIO_FEED_ID = ["sonar"]
-AIO_USERNAME = "Jun_nior_123"
-# AIO_KEY = "aio_fRyE83nmGdw3AZKpc8m7IRBRW5F"
+AIO_USERNAME = "Jun_nior"
+# AIO_KEY = "aio_glnz98XOpRgQM2p9AKbL5f3UmEn" 
 
 def connected(client):
     print("Ket noi thanh cong ...")
@@ -28,3 +28,4 @@ client.on_message = message
 client.on_subscribe = subscribe
 client.connect()
 client.loop_background()
+
