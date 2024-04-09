@@ -1,5 +1,6 @@
 import time                                                                                                                                                                   
-import serial.tools.list_ports                                                                
+import serial.tools.list_ports   
+from adafruit import *                                                             
 
 def crc16_modbus_recheck(data):
     """
@@ -122,10 +123,11 @@ while True:
                                                                                                                                                                                    
     # print("TEST SENSOR")                                                                      
                                                                                   
-    # print("Moisture: ")                                                                       
-                                                                                              
-    # print(readMoisture())                                                                                                                                                           
-    # time.sleep(1)                                                                                                                                                                    
+    print("Moisture: ")                                                                       
+    moisture= readMoisture()                                                                          
+    print(moisture)
+    client.publish("sonar", moisture)                                                                                                                                                           
+    time.sleep(1)                                                                                                                                                                    
     # print("Temperature: ")                                                                                                                                                           
     # print(readTemperature())                                                                                                                                                    
     # time.sleep(1)
