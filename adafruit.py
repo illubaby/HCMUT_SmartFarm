@@ -4,7 +4,7 @@ import random
 from Adafruit_IO import MQTTClient
 AIO_FEED_ID = []
 AIO_USERNAME_t = os.environ.get('AIO_USERNAME')
-AIO_KEY_t = "aio_fRyE83nmGdw3AZKpc8m7IRBRW5FO"
+# AIO_KEY_t = "aio_fRyE83nmGdw3AZKpc8m7IRBRW5F"
 
 def connected(client):
     print("Ket noi thanh cong ...")
