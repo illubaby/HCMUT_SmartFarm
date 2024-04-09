@@ -3,8 +3,8 @@ import time
 import random
 from Adafruit_IO import MQTTClient
 AIO_FEED_ID = ["sonar"]
-AIO_USERNAME = "Jun_nior"
-# AIO_KEY = "aio_glnz98XOpRgQM2p9AKbL5f3UmEn" 
+AIO_USERNAME = "Junnn123"
+# AIO_KEY = "aio_GyDq32vQtPzfCEihUi2VYQ3v3da"
 
 def connected(client):
     print("Ket noi thanh cong ...")
@@ -19,7 +19,7 @@ def disconnected(client):
     sys.exit (1)
 
 def message(client , feed_id , payload):
-    print("Nhan du lieu: " + payload + ", feed id: " + feed_id)
+    print("Da gui: " + payload + ", feed id: " + feed_id)
 
 client = MQTTClient(AIO_USERNAME , AIO_KEY)
 client.on_connect = connected
