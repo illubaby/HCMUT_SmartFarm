@@ -2,7 +2,7 @@ import sys
 import time
 import random
 from Adafruit_IO import MQTTClient
-AIO_FEED_ID = ["sonar"]
+AIO_FEED_ID = ["sonar","pump-in","pump-out"]
 AIO_USERNAME = "Junnn123"
 # AIO_KEY = "aio_GyDq32vQtPzfCEihUi2VYQ3v3da"
 
