@@ -85,7 +85,7 @@ def serial_read_data():
         print(data_array)                                                                                                                                                     
         if len(data_array) >= 7:                                                                                                                                            
             array_size = len(data_array)                                                                                                                                   
-            value = data_array[array_size - 4] * 256 + data_array[array_size - 3]                                                                                      
+            value = readData(data_array)                                                                                     
             return value                                                                                                                                                       
         else:                                                                                                                                                                 
             return -1                                                                                                                                                          
@@ -103,18 +103,13 @@ def readTemperature():
                                                                                               
 soil_moisture = [1, 3, 0, 7, 0, 1, 53, 203]                                                   
 
-soil_moisture[6], soil_moisture[7]=crc16_modbus_recheck(bytes(soil_moisture[0:6]))
+soil_moisture[len(soil_moisture)-2], soil_moisture[len(soil_moisture)-1]=crc16_modbus_recheck(bytes(soil_moisture[0:len(soil_moisture)-2]))
 
 def readMoisture():                                                                                                                                                             
     serial_read_data()                                                                        
     ser.write(soil_moisture)                                                                                                                                                          
     time.sleep(1)                                                                                                                                                                       
     return serial_read_data()                                                                 
-
-
-
-
-
 
 while True:                                                                                   
     print("TEST ACTUATOR")                                                                                                                                                  
