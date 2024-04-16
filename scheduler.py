@@ -23,14 +23,14 @@ set_timeout(5)
 
 while True:
     setDevice1(True,2)
-    # print("state:" + str(state) + " " + "time: " + str(time_out))
-    # if (state==IDLE):
-    #     time_out = time_out -1
-    #     if (time_out<=0) :
-    #         print("MIXER 1: ")
-    #         setDevice1(True,2)
-    #         next_state=MIXER_1
-    #         set_timeout(5)
+    print("state:" + str(state) + " " + "time: " + str(time_out))
+    if (state==IDLE):
+        time_out = time_out -1
+        if (time_out<=0) :
+            print("MIXER 1: ")
+            setDevice1(True,2)
+            next_state=MIXER_1
+            set_timeout(5)
     # elif (state==MIXER_1):
     #     time_out = time_out -1
     #     if (time_out<=0) :
