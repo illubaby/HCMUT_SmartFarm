@@ -1,0 +1,16 @@
+Manual State Machine
+    - Button Auto Irrigation
+        Wait until the start of irrigation 
+        Mixer 1 is started
+        Mixer 2 is started
+        Mixer 3 is started
+        Send to app
+        Pump in is started
+        Pump out is started
+        Wait until the next cycle
+        Wait until the end of irrigation
+    - Custom turn on Pump
+    - Custom Turn on fertilizer
+Finite State Machine
+    - If moisture < 50% : turn on fertilizer
+    - if Temprature > 30* : Turn on pump 
