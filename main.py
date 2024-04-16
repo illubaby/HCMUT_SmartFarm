@@ -52,29 +52,30 @@ except:
 
 def readData(dataAray):
     decValue = 0
-    for i in range (2, len(dataAray) - 2):
+    for i in range (3, len(dataAray) - 2):
         decValue = decValue + dataAray[i] * (256 ** (len(dataAray) - i - 3))
     return decValue
 
-relay1_ON = [2, 6, 0, 0, 0, 255, 201, 185]                                                                                                                                       
-relay1_OFF = [2, 6, 0, 0, 0, 0, 137, 249]                                                     
+# relay1_ON = [2, 6, 0, 0, 0, 255, 201, 185]                                                                                                                                       
+# relay1_OFF = [2, 6, 0, 0, 0, 0, 137, 249]                                                     
+                                                                                            
+
+# # Splitting the result into two bytes
+# relay1_ON[6] ,relay1_ON[7] = crc16_modbus_recheck(bytes(relay1_ON[0:6]))
+# relay1_OFF[6] ,relay1_OFF[7] = crc16_modbus_recheck(bytes(relay1_OFF[0:6]))
+
+# print(relay1_ON)                                 
                                                                                               
-message_on = bytes(relay1_ON[0:5])
-message_off = bytes(relay1_OFF[0:5])
-
-
-# Splitting the result into two bytes
-relay1_ON[6] ,relay1_ON[7] = crc16_modbus_recheck(bytes(relay1_ON[0:6]))
-relay1_OFF[6] ,relay1_OFF[7] = crc16_modbus_recheck(bytes(relay1_OFF[0:6]))
-
-print(relay1_ON)                                 
-                                                                                              
-def setDevice1(state):                                                                                                                                                   
+def setDevice1(state,ID): 
+    relay1_ON = [ID, 6, 0, 0, 0, 255, 201, 185]                                                                                                                                       
+    relay1_OFF = [ID, 6, 0, 0, 0, 0, 137, 249]
+    relay1_ON[6] ,relay1_ON[7] = crc16_modbus_recheck(bytes(relay1_ON[0:6]))
+    relay1_OFF[6] ,relay1_OFF[7] = crc16_modbus_recheck(bytes(relay1_OFF[0:6]))                                                                                                                                
     if state == True:                                                                                                                                                   
         ser.write(relay1_ON)                                                                                                                                                 
     else:                                                                                                                                                                       
         ser.write(relay1_OFF)                                                                                                                                                  
-    time.sleep(1)                                                                                                                                                             
+    # time.sleep(1)                                                                                                                                                             
     print(serial_read_data())                                                                 
                                                                                               
                                                                                               
@@ -112,24 +113,24 @@ def readMoisture():
     time.sleep(1)                                                                                                                                                                       
     return serial_read_data()                                                                 
 
-while True:                                                                                   
-    print("TEST ACTUATOR")                                                                                                                                                  
-    setDevice1(True)                                                                                                                                                            
-    time.sleep(2)  
+# while True:                                                                                   
+#     print("TEST ACTUATOR")                                                                                                                                                  
+#     setDevice1(True)                                                                                                                                                            
+#     time.sleep(2)  
     
                                                                                                                                                                 
-    # setDevice1(False)                                                                                                                                                          
-    # time.sleep(2)                                                                             
+#     # setDevice1(False)                                                                                                                                                          
+#     # time.sleep(2)                                                                             
                                                                                                                                                                                    
-    # print("TEST SENSOR")                                                                      
+#     # print("TEST SENSOR")                                                                      
                                                                                   
-    print("Moisture: ")                                                                       
-    moisture= readMoisture()                                                                          
-    print(moisture)
-    client.publish("sonar", moisture)
-    client.publish("pump-in", moisture)                                                                                                                                                           
-    client.publish("pump-out", moisture)                                                                                                                                                           
-    time.sleep(1)                                                                                                                                                                    
-    # print("Temperature: ")                                                                                                                                                           
-    # print(readTemperature())                                                                                                                                                    
-    # time.sleep(1)
+#     print("Moisture: ")                                                                       
+#     moisture= readMoisture()                                                                          
+#     print(moisture)
+#     client.publish("sonar", moisture)
+#     client.publish("pump-in", moisture)                                                                                                                                                           
+#     client.publish("pump-out", moisture)                                                                                                                                                           
+#     time.sleep(1)                                                                                                                                                                    
+#     # print("Temperature: ")                                                                                                                                                           
+#     # print(readTemperature())                                                                                                                                                    
+#     # time.sleep(1)
