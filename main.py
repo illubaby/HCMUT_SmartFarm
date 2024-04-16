@@ -75,7 +75,8 @@ def setDevice1(state,ID):
         ser.write(relay1_ON)                                                                                                                                                 
     else:                                                                                                                                                                       
         ser.write(relay1_OFF)                                                                                                                                                  
-    # time.sleep(1)                                                                                                                                                             
+    # time.sleep(1)   
+    print("respond: ")                                                                                                                                                          
     print(serial_read_data())                                                                 
                                                                                               
                                                                                               

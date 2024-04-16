@@ -27,7 +27,7 @@ while True:
         time_out = time_out -1
         if (time_out<=0) :
             print("MIXER 1: ")
-            setDevice1(True)
+            setDevice1(True,2)
             next_state=MIXER_1
             set_timeout(5)
     elif (state==MIXER_1):
