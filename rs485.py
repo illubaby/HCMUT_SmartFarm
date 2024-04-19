@@ -73,6 +73,7 @@ def setDevice1(state):
     print(serial_read_data(ser))
 
 while True:
+    print("Test SENSOR: ")
     setDevice1(True)
     time.sleep(2)
     setDevice1(False)
