@@ -2,6 +2,10 @@ import time
 import serial.tools.list_ports   
 from adafruit import *                                                             
 
+soilMoistureID = 2
+soilTemperatureID = 3
+sonarID = 2
+
 def crc16_modbus_recheck(data):
     """
     Recheck the CRC-16 calculation for a given string of bytes using the Modbus protocol.
@@ -95,7 +99,7 @@ def serial_read_data():
     return 0                                                                                  
                                                                                               
                                                                                               
-soil_temperature = [1, 3, 0, 6, 0, 1, 100, 11]                                                
+soil_temperature = [soilTemperatureID, 3, 0, 6, 0, 1, 100, 11]                                                
                                                                                               
 def readTemperature():                                                                                                                                                                
     serial_read_data()                                                                                                                                                            
@@ -106,7 +110,7 @@ def readTemperature():
     return temp                                                              
                                                                                               
                                                                                               
-soil_moisture = [1, 3, 0, 7, 0, 1, 53, 203]                                                   
+soil_moisture = [soilMoistureID, 3, 0, 7, 0, 1, 53, 203]                                                   
 soil_moisture[len(soil_moisture)-2], soil_moisture[len(soil_moisture)-1]=crc16_modbus_recheck(bytes(soil_moisture[0:len(soil_moisture)-2]))
 
 def readMoisture():                                                                                                                                                             
@@ -116,7 +120,7 @@ def readMoisture():
     return serial_read_data()                                                                 
 
 
-sonar = [1, 3, 0, 7, 0, 1, 53, 203]                                                   
+sonar = [sonarID, 3, 0, 7, 0, 1, 53, 203]                                                   
 
 sonar[len(sonar)-2], sonar[len(sonar)-1]=crc16_modbus_recheck(bytes(sonar[0:len(sonar)-2]))
 def readSonarSensor():

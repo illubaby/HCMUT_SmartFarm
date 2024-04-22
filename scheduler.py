@@ -1,5 +1,6 @@
 import time
 from main import *
+import random
 
 IDLE = 0
 MIXER_1 = 1
@@ -18,10 +19,16 @@ PUMP_OUT_Relay = 5
 SELECTOR_Relay = 6
 NEXT_CYCLE_Relay = 7
 
+IDLE_TIME_OUT = 5
 MIXER_1_TIMEOUT = 5
 MIXER_2_TIMEOUT = 5
 MIXER_3_TIMEOUT = 5
+PUMP_IN_TIMEOUT = 5
+PUMP_OUT_TIMEOUT = 5
+SELECTOR_TIMEOUT = 5
+NEXT_CYCLE_TIMEOUT = 5
 
+CURRENT_AREA_SELECTED = 4
 
 state = IDLE
 next_state=IDLE
@@ -66,31 +73,33 @@ while True:
         time_out = time_out -1
         if (time_out<=0) :
             next_state=PUMP_IN
-            set_timeout(5)
+            set_timeout(PUMP_IN_TIMEOUT)
 
     elif (state==PUMP_IN):
         time_out = time_out -1
         if (time_out<=0) :
             next_state=SELECTOR
-            set_timeout(5)
+            CURRENT_AREA_SELECTED = random.randint(4, 6)
+            print("Area being irrigated: " + str(CURRENT_AREA_SELECTED))
+            set_timeout(SELECTOR_TIMEOUT)
 
     elif (state==SELECTOR):
         time_out = time_out -1
         if (time_out<=0) :
             next_state=PUMP_OUT
-            set_timeout(5)
+            set_timeout(PUMP_OUT_TIMEOUT)
 
     elif (state==PUMP_OUT):
         time_out = time_out -1
         if (time_out<=0) :
             next_state=NEXT_CYCLE
-            set_timeout(5)
+            set_timeout(NEXT_CYCLE_TIMEOUT)
 
     elif (state==NEXT_CYCLE):
         time_out = time_out -1
         if (time_out<=0) :
             next_state=IDLE
-            set_timeout(5)
+            set_timeout(IDLE_TIME_OUT)
     state=next_state
     time.sleep(1)
     
