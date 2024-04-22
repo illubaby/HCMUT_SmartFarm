@@ -100,8 +100,10 @@ soil_temperature = [1, 3, 0, 6, 0, 1, 100, 11]
 def readTemperature():                                                                                                                                                                
     serial_read_data()                                                                                                                                                            
     ser.write(soil_temperature)                                                                                                                                                    
-    time.sleep(1)                                                                                                                                                               
-    return serial_read_data()                                                                 
+    time.sleep(1)
+    temp = serial_read_data()     
+    print("Soil temperature:" + str(temp))                                                                                                                                                    
+    return temp                                                              
                                                                                               
                                                                                               
 soil_moisture = [1, 3, 0, 7, 0, 1, 53, 203]                                                   
