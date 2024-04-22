@@ -107,6 +107,10 @@ while True:
 
     elif (state==PUMP_OUT):
         time_out = time_out -1
+        
+        if (readSonarSensor() < 10):
+            pass
+
         if (time_out<=0) :
             setDevice1(False, PUMP_OUT_Relay)
             
@@ -118,7 +122,7 @@ while True:
         if (time_out<=0) :
             next_state=IDLE
             set_timeout(IDLE_TIME_OUT)
-            
+
     state=next_state
     time.sleep(1)
     
