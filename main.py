@@ -100,23 +100,32 @@ soil_temperature = [1, 3, 0, 6, 0, 1, 100, 11]
 def readTemperature():                                                                                                                                                                
     serial_read_data()                                                                                                                                                            
     ser.write(soil_temperature)                                                                                                                                                    
-    time.sleep(1)
+    # time.sleep(1)
     temp = serial_read_data()     
     print("Soil temperature:" + str(temp))                                                                                                                                                    
     return temp                                                              
                                                                                               
                                                                                               
 soil_moisture = [1, 3, 0, 7, 0, 1, 53, 203]                                                   
-
 soil_moisture[len(soil_moisture)-2], soil_moisture[len(soil_moisture)-1]=crc16_modbus_recheck(bytes(soil_moisture[0:len(soil_moisture)-2]))
 
 def readMoisture():                                                                                                                                                             
     serial_read_data()                                                                        
     ser.write(soil_moisture)                                                                                                                                                          
-    time.sleep(1)                                                                                                                                                                       
+    # time.sleep(1)                                                                                                                                                                       
     return serial_read_data()                                                                 
 
-# while True:                                                                                   
+
+sonar = [1, 3, 0, 7, 0, 1, 53, 203]                                                   
+
+sonar[len(sonar)-2], sonar[len(sonar)-1]=crc16_modbus_recheck(bytes(sonar[0:len(sonar)-2]))
+def readSonarSensor():
+    serial_read_data()                                                                        
+    ser.write(sonar)                                                                                                                                                          
+    # time.sleep(1)                                                                                                                                                                       
+    return serial_read_data()
+
+while True:                                                                                   
 #     print("TEST ACTUATOR")                                                                                                                                                  
 #     setDevice1(True,2)                                                                                                                                                            
 #     time.sleep(2)  
@@ -125,11 +134,11 @@ def readMoisture():
 #     # setDevice1(False)                                                                                                                                                          
 #     # time.sleep(2)                                                                             
                                                                                                                                                                                    
-#     # print("TEST SENSOR")                                                                      
+    print("TEST SENSOR")                                                                      
                                                                                   
-#     print("Moisture: ")                                                                       
-#     moisture= readMoisture()                                                                          
-#     print(moisture)
+    print("Moisture: ")                                                                       
+    moisture= readMoisture()                                                                          
+    print(moisture)
 #     client.publish("sonar", moisture)
 #     client.publish("pump-in", moisture)                                                                                                                                                           
 #     client.publish("pump-out", moisture)                                                                                                                                                           

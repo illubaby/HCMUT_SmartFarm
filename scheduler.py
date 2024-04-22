@@ -39,7 +39,7 @@ while True:
     # setDevice1(True,2)
     print("state:" + str(state) + " " + "time: " + str(time_out))
     if (state==IDLE):
-        time_out = time_out -1
+        time_out = time_out - 1
 
         if (readMoisture() < 50 and readTemperature() > 30):
             pass
@@ -51,7 +51,7 @@ while True:
             set_timeout(MIXER_1_TIMEOUT)
 
     elif (state==MIXER_1):
-        time_out = time_out -1
+        time_out = time_out - 1
         if (time_out<=0) :
             next_state=MIXER_2
             set_timeout(MIXER_2_TIMEOUT)
