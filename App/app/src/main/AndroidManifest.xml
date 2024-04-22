@@ -30,21 +30,7 @@
             android:exported="false"
             android:label="SecondActivity"
             android:theme="@style/Theme.TestSuite" />
-        <activity
-            android:name=".ThirdActivity"
-            android:exported="false"
-            android:label="ThirdActivity"
-            android:theme="@style/Theme.TestSuite" />
-        <activity
-            android:name=".FourthActivity"
-            android:exported="false"
-            android:label="FourthActivity"
-            android:theme="@style/Theme.TestSuite" />
-        <activity
-            android:name=".FifthActivity"
-            android:exported="false"
-            android:label="FifthActivity"
-            android:theme="@style/Theme.TestSuite" />
+
         <activity
             android:name=".FirstActivity"
             android:exported="true">

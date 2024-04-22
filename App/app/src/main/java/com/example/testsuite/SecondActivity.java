@@ -27,20 +27,6 @@ public class SecondActivity extends AppCompatActivity {
     Button btn0, btn1, btn2, btn3;
     Switch btnLight;
     ImageView imgLight;
-    ImageView mainImgColor;
-    ImageView redImgColor;
-    ImageView orangeImgColor;
-    ImageView yellowImgColor;
-    ImageView greenImgColor;
-    ImageView blueImgColor;
-    ImageView dark_blueImgColor;
-    ImageView purpleImgColor;
-    ImageView pinkImgColor;
-    ImageView brownImgColor;
-    ImageView bluepinkImgColor;
-    ImageView greyImgColor;
-    TextView txtSpeed;
-    Slider sliderFan;
     MQTTHelper mqttHelper;
 
     @Override
@@ -52,16 +38,6 @@ public class SecondActivity extends AppCompatActivity {
             Intent intent = new Intent(this, FirstActivity.class);
             startActivity(intent);
         });
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn2.setOnClickListener(e -> {
-            Intent intent = new Intent(this, ThirdActivity.class);
-            startActivity(intent);
-        });
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn3.setOnClickListener(e -> {
-            Intent intent = new Intent(this, FourthActivity.class);
-            startActivity(intent);
-        });
 
         btnLight = (Switch) findViewById(R.id.btn_light);
         imgLight = (ImageView) findViewById(R.id.img_light);
@@ -70,10 +46,10 @@ public class SecondActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
                     imgLight.setImageResource(R.mipmap.bulb_on);
-                    sendDataMQTT("illubaby/feeds/V1", "1");
+                    sendDataMQTT("Junnn123/feeds/start-button", "1");
                 } else {
                     imgLight.setImageResource(R.mipmap.bulb_off);
-                    sendDataMQTT("illubaby/feeds/V1", "0");
+                    sendDataMQTT("Junnn123/feeds/start-button", "0");
                 }
             }
         });
@@ -112,7 +88,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Log.d("Test",topic+ "***"+ message.toString());
-                if (topic.endsWith("V1")) {
+                if (topic.endsWith("start-button")) {
                     btnLight.setChecked(message.toString().equals("1"));
                 }
             }

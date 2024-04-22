@@ -1,3 +1,4 @@
+Start 2 time a day : 7am and 16pm
 Manual State Machine
     - Button Auto Irrigation
         Wait until the start of irrigation 
@@ -12,5 +13,5 @@ Manual State Machine
     - Custom turn on Pump
     - Custom Turn on fertilizer
 Finite State Machine
-    - If moisture < 50% : turn on fertilizer
-    - if Temprature > 30* : Turn on pump 
+    - If moisture < 50% : turn on fertilizer (for : 30s)
+    - if Temprature > 30* : Turn on pump  (for :30s )

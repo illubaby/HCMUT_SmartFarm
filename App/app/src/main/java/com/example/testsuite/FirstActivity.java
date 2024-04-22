@@ -49,16 +49,6 @@ public class FirstActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SecondActivity.class);
             startActivity(intent);
         });
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn2.setOnClickListener(e -> {
-            Intent intent = new Intent(this, ThirdActivity.class);
-            startActivity(intent);
-        });
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn3.setOnClickListener(e -> {
-            Intent intent = new Intent(this, FourthActivity.class);
-            startActivity(intent);
-        });
 
         txtTemp = (TextView) findViewById(R.id.txt_temp);
         txtHumi = (TextView) findViewById(R.id.txt_humi);
@@ -86,9 +76,9 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Log.d("First",topic+ "***"+ message.toString());
-                if (topic.contains("V1")) {
+                if (topic.contains("temp")) {
                     txtTemp.setText("Temperature: " + message.toString() + "°C");
-                    Log.d("V1",topic+ "***"+ message.toString());
+                    Log.d("temp",topic+ "***"+ message.toString());
 
                     float tempValue;
                     try {
@@ -99,9 +89,9 @@ public class FirstActivity extends AppCompatActivity {
                         return;
                     }
                 }
-                else if (topic.contains("V2")) {
+                else if (topic.contains("humid")) {
                     txtHumi.setText("Humidity: " + message.toString() + "%");
-                    Log.d("V2",topic+ "***"+ message.toString());
+                    Log.d("humid",topic+ "***"+ message.toString());
 
                     float tempValue;
                     try {
@@ -113,9 +103,9 @@ public class FirstActivity extends AppCompatActivity {
                     }
 
                 }
-                else if (topic.contains("V3")) {
+                else if (topic.contains("sonar")) {
                     txtIllu.setText("Illumination: " + message.toString() + "lx");
-                    Log.d("V3",topic+ "***"+ message.toString());
+                    Log.d("light",topic+ "***"+ message.toString());
 
                     float tempValue;
                     try {

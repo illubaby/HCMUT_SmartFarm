@@ -18,16 +18,16 @@ import org.eclipse.paho.client.mqttv3.MqttMessage;
 public class MQTTHelper {
     public MqttAndroidClient mqttAndroidClient;
 
-    final String clientId = "12345678";
-    final String username = "illubaby";
-    final String password = "";
+    final String clientId = "13456789";
+    final String username = "Junnn123";
+    final String password = "aio_GyDq32vQtPzfCEihUi2VYQ3v3da";
 
     public final String[] arrayTopics = {
-            username + "/feeds/V1", username + "/feeds/V2", username + "/feeds/V3",
-            username + "/feeds/V10", username + "/feeds/V11", username + "/feeds/V12"
+            username + "/feeds/temp", username + "/feeds/humid", username + "/feeds/sonar",
+            username + "/feeds/start-button"
     };
 
-    final String serverUri = "tcp://mqtt.ohstem.vn:1883";
+    final String serverUri = "tcp://io.adafruit.com:1883";
 
     public MQTTHelper(Context context){
         mqttAndroidClient = new MqttAndroidClient(context, serverUri, clientId);
@@ -109,6 +109,7 @@ public class MQTTHelper {
                 });
 
             } catch (MqttException ex) {
+                Log.d("TEST", "Subscribed fail");
                 System.err.println("Exceptionst subscribing");
                 ex.printStackTrace();
             }
