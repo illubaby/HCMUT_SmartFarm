@@ -1,6 +1,6 @@
 import time                                                                                                                                                                   
 import serial.tools.list_ports   
-from adafruit import *                                                             
+                                                             
 
 soilMoistureID = 2
 soilTemperatureID = 3
@@ -75,9 +75,11 @@ def setDevice1(state,ID):
     relay1_OFF = [ID, 6, 0, 0, 0, 0, 137, 249]
     relay1_ON[6] ,relay1_ON[7] = crc16_modbus_recheck(bytes(relay1_ON[0:6]))
     relay1_OFF[6] ,relay1_OFF[7] = crc16_modbus_recheck(bytes(relay1_OFF[0:6]))                                                                                                                                
-    if state == True:                                                                                                                                                   
+    if state == True:
+        print("Turn on relay " + str(ID))                                                                                                                                                
         ser.write(relay1_ON)                                                                                                                                                 
-    else:                                                                                                                                                                       
+    else:
+        print("Turn of relay " + str(ID))                                                                                                                                                                     
         ser.write(relay1_OFF)                                                                                                                                                  
     # time.sleep(1)   
     print("respond: ")                                                                                                                                                          
