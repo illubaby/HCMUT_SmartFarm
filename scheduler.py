@@ -49,10 +49,15 @@ while True:
     print("state:" + str(state) + " " + "time: " + str(time_out))
     time_out = time_out -1
     if (state==IDLE):
-        if (readMoisture() < 50 and readTemperature() > 30):
+        currentTemp = readTemperature()
+        currentMoisture = readMoisture()
+        if (currentMoisture < 50 and currentMoisture > 30):
             pass
 
         if (time_out<=0) :
+            client.publish("humid", currentMoisture)
+            client.publish("temp", currentTemp)
+
             setDevice1(True, MIXER_1_Relay)
             client.publish("current-device", "MIXER 1")
 
@@ -87,7 +92,13 @@ while True:
             set_timeout(PUMP_IN_TIMEOUT)
 
     elif (state==PUMP_IN):
+        currentWater = readSonarSensor()
+        if (currentWater < 50):
+            pass
+
         if (time_out<=0) :
+            client.publish("sonar", currentWater)
+
             setDevice1(False, PUMP_IN_Relay)
             setDevice1(True, SELECTOR_Relay)
 

@@ -117,9 +117,10 @@ soil_moisture[len(soil_moisture)-2], soil_moisture[len(soil_moisture)-1]=crc16_m
 
 def readMoisture():                                                                                                                                                             
     serial_read_data()                                                                        
-    ser.write(soil_moisture)                                                                                                                                                          
-    # time.sleep(1)                                                                                                                                                                       
-    return serial_read_data()                                                                 
+    ser.write(soil_moisture)
+    moisture = serial_read_data()                                                                                                                                                      
+    print("Soil moisture:" + str(moisture))                                                                                                                                                                      
+    return moisture                                                                
 
 
 sonar = [sonarID, 3, 0, 7, 0, 1, 53, 203]                                                   
@@ -128,10 +129,11 @@ sonar[len(sonar)-2], sonar[len(sonar)-1]=crc16_modbus_recheck(bytes(sonar[0:len(
 def readSonarSensor():
     serial_read_data()                                                                        
     ser.write(sonar)                                                                                                                                                          
-    # time.sleep(1)                                                                                                                                                                       
-    return serial_read_data()
+    distance = serial_read_data() 
+    print("Water distance:" + str(distance))                                                                                                                                                                 
+    return distance
 
-while True:                                                                                   
+# while True:                                                                                   
 #     print("TEST ACTUATOR")                                                                                                                                                  
 #     setDevice1(True,2)                                                                                                                                                            
 #     time.sleep(2)  
@@ -142,9 +144,9 @@ while True:
                                                                                                                                                                                    
     print("TEST SENSOR")                                                                      
                                                                                   
-    print("Moisture: ")                                                                       
-    moisture= readMoisture()                                                                          
-    print(moisture)
+    # print("Moisture: ")                                                                       
+    # moisture= readMoisture()                                                                          
+    # print(moisture)
 #     client.publish("sonar", moisture)
 #     client.publish("pump-in", moisture)                                                                                                                                                           
 #     client.publish("pump-out", moisture)                                                                                                                                                           
