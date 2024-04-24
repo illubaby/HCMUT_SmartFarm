@@ -30,15 +30,28 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
+        <android.widget.Switch
+            android:id="@+id/btn_light"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginLeft="40dp"
+            android:checked="false"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:thumb="@drawable/ic_thumb"
+            android:track="@drawable/bg_track" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Mode "
+            android:gravity="center"
+            android:text="Scheduler Mode "
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:gravity="center">
-        </TextView>
+            android:textStyle="bold"></TextView>
+
+
     </LinearLayout>
 
     <LinearLayout
@@ -52,25 +65,20 @@
             android:layout_height="match_parent"
             android:layout_weight="1">
 
-            <android.widget.Switch
-                android:id="@+id/btn_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+            <Button
+                android:id="@+id/mode1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
-                android:checked="false"
+                android:background="@drawable/bg_track"
                 android:scaleX="2"
                 android:scaleY="2"
-                android:thumb="@drawable/ic_thumb"
-                android:track="@drawable/bg_track" />
+                android:text="Mode 1"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/img_light"
-                android:layout_width="100dp"
-                android:layout_height="120dp"
-                android:layout_below="@+id/btn_light"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/bulb_off" />
+
+
         </RelativeLayout>
 
 
@@ -89,25 +97,19 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
-            <android.widget.Switch
-                android:id="@+id/btn_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+
+            <Button
+                android:id="@+id/mode2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
-                android:checked="false"
+                android:background="@drawable/bg_track"
                 android:scaleX="2"
                 android:scaleY="2"
-                android:thumb="@drawable/ic_thumb"
-                android:track="@drawable/bg_track" />
+                android:text="Mode 2"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
 
-            <ImageView
-                android:id="@+id/img_light"
-                android:layout_width="100dp"
-                android:layout_height="120dp"
-                android:layout_below="@+id/btn_light"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/bulb_off" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -124,25 +126,17 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
-            <android.widget.Switch
-                android:id="@+id/btn_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+            <Button
+                android:id="@+id/mode3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="8dp"
-                android:checked="false"
+                android:background="@drawable/bg_track"
                 android:scaleX="2"
                 android:scaleY="2"
-                android:thumb="@drawable/ic_thumb"
-                android:track="@drawable/bg_track" />
-
-            <ImageView
-                android:id="@+id/img_light"
-                android:layout_width="100dp"
-                android:layout_height="120dp"
-                android:layout_below="@+id/btn_light"
-                android:layout_centerHorizontal="true"
-                android:src="@mipmap/bulb_off" />
+                android:text="Mode 3"
+                android:textAllCaps="false"
+                android:textSize="18sp" />
 
         </RelativeLayout>
 

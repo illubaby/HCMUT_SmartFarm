@@ -34,7 +34,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class FirstActivity extends AppCompatActivity {
     Button btn1, btn2, btn3;
-    TextView txtTemp, txtHumi, txtIllu;
+    TextView txtTemp, txtHumi, txtIllu, txtDeviceStatus;
     LineChart mChartTemp, mChartHumi, mChartIllu;
 
     MQTTHelper mqttHelper;
@@ -55,8 +55,8 @@ public class FirstActivity extends AppCompatActivity {
         txtIllu = (TextView) findViewById(R.id.txt_illu);
         mChartTemp = findViewById(R.id.lineChartTemp);
         mChartHumi = findViewById(R.id.lineChartHumi);
-        mChartIllu = findViewById(R.id.lineChartIllu);
-
+        //mChartIllu = findViewById(R.id.lineChartIllu);
+        txtDeviceStatus = findViewById(R.id.txtDeviceStatus);
         startMQTT();
     }
 
@@ -117,6 +117,10 @@ public class FirstActivity extends AppCompatActivity {
                     }
 
                 }
+                else if (topic.contains("current_device")) {
+                    Log.d("current_device", "current_device ");
+                    displayDeviceStatus(message.toString());
+                }
             }
 
             private LineDataSet createSet() {
@@ -125,7 +129,10 @@ public class FirstActivity extends AppCompatActivity {
                 // Customize the dataset appearance here
                 return set;
             }
-
+            private void displayDeviceStatus(String deviceName) {
+                txtDeviceStatus.setVisibility(View.VISIBLE); // Make sure the TextView is visible
+                txtDeviceStatus.setText("Current Device: \n" + deviceName);
+            }
             private void displayChart(float tempValue, LineChart mChart) {
                     LineData data = mChart.getData();
                     if (data == null) {
