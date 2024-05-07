@@ -86,8 +86,8 @@ while True:
         print("START BUTTON" + str(START_BUTTON))
         currentTemp = readTemperature()
         currentMoisture = readMoisture()
-        if (currentMoisture < 50 and currentMoisture > 30):
-            pass
+        # if (currentMoisture < 50 and currentMoisture > 30):
+        #     pass
         if (START_BUTTON):
             print("HAHAHAHA")
             client.publish("humid", currentMoisture)
