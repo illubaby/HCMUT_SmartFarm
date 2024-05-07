@@ -83,6 +83,7 @@ while True:
     print("state:" + str(state) + " " + "time: " + str(time_out))
     time_out = time_out -1
     if (state==IDLE):
+        print("START BUTTON" + str(START_BUTTON))
         currentTemp = readTemperature()
         currentMoisture = readMoisture()
         if (currentMoisture < 50 and currentMoisture > 30):
