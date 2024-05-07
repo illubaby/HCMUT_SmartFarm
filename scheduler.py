@@ -179,6 +179,8 @@ while True:
             if (CYCLE <= 0):
                 # start_button = False
                 next_state=IDLE
+                client.publish("current-device", "IDLE")
+                client.publish("start-button", 0)
             else:
                 setDevice1(True, MIXER_1_Relay)
                 client.publish("current-device", "MIXER 1") 
