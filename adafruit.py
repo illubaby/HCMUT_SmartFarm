@@ -39,6 +39,7 @@ def message(client , feed_id , payload):
         if (payload == "1"):
             MODE = 1
         elif (payload == "2"):
+            print("Mode 2")
             MODE = 2
         elif (payload == "3"):
             MODE = 3
