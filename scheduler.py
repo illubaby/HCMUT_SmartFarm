@@ -83,12 +83,12 @@ while True:
     print("state:" + str(state) + " " + "time: " + str(time_out))
     time_out = time_out -1
     if (state==IDLE):
-        print("START BUTTON" + str(isStart()))
+        print("START BUTTON" + str(start_button))
         currentTemp = readTemperature()
         currentMoisture = readMoisture()
         if (currentMoisture < 50 and currentMoisture > 30):
             pass
-        if (isStart()):
+        if (start_button):
             print("HAHAHAHA")
             client.publish("humid", currentMoisture)
             client.publish("temp", currentTemp)
@@ -102,7 +102,7 @@ while True:
             client.publish("current-device", "MIXER 1")
             next_state=MIXER_1
             set_timeout(MIXER_1_TIMEOUT)
-            set_start_button(False)
+            start_button = FALSE
 
     elif (state==MIXER_1):
         if (time_out<=0) :
