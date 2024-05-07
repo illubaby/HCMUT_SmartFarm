@@ -142,7 +142,7 @@ def readSonarSensor():
 #     # setDevice1(False)                                                                                                                                                          
 #     # time.sleep(2)                                                                             
                                                                                                                                                                                    
-    print("TEST SENSOR")                                                                      
+    # print("TEST SENSOR")                                                                      
                                                                                   
     # print("Moisture: ")                                                                       
     # moisture= readMoisture()                                                                          

@@ -3,6 +3,7 @@ import time
 import random
 from Adafruit_IO import MQTTClient
 START_BUTTON = False
+MODE = 1
 AIO_FEED_ID = ["sonar","current-device", "start-button", "temp", "humid", "mode"]
 AIO_USERNAME = "Junnn123"
 # AIO_KEY = "aio_GyDq32vQtPzfCEihUi2VYQ3v3da"
@@ -25,6 +26,14 @@ def message(client , feed_id , payload):
         global START_BUTTON
         if (payload == "1"):
             START_BUTTON = True
+    elif (feed_id == "mode"):
+        global MODE
+        if (payload == "1"):
+            MODE = 1
+        elif (payload == "2"):
+            MODE = 2
+        elif (payload == "3"):
+            MODE = 3
 
 client = MQTTClient(AIO_USERNAME , AIO_KEY)
 client.on_connect = connected
