@@ -91,12 +91,15 @@ while True:
             print("HAHAHAHA")
             client.publish("humid", currentMoisture)
             client.publish("temp", currentTemp)
-            if (MODE == 1):
+            if (isMode() == 1):
                 Mode1()
-            elif (MODE == 2):
+                print("Mode 1")
+            elif (isMode() == 2):
                 Mode2()
-            elif (MODE == 3):
+                print("Mode 2")
+            elif (isMode() == 3):
                 Mode3()
+                print("Mode 3")
             setDevice1(True, MIXER_1_Relay)
             client.publish("current-device", "MIXER 1")
             next_state=MIXER_1
