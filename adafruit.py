@@ -2,11 +2,18 @@ import sys
 import time
 import random
 from Adafruit_IO import MQTTClient
-START_BUTTON = False
+start_button = False
 MODE = 1
 AIO_FEED_ID = ["sonar","current-device", "start-button", "temp", "humid", "mode"]
 AIO_USERNAME = "Junnn123"
 # AIO_KEY = "aio_GyDq32vQtPzfCEihUi2VYQ3v3da"
+
+def isStart():
+    return start_button
+
+def set_start_button(value):
+    global start_button
+    start_button = value
 
 def connected(client):
     print("Ket noi thanh cong ...")
@@ -24,8 +31,8 @@ def message(client , feed_id , payload):
     print("Da gui: " + payload + ", feed id: " + feed_id)
     if (feed_id == "start-button"):
         if (payload == "1"):
-            START_BUTTON = True
-            print("ON ada:" + str(START_BUTTON))
+            start_button = True
+            print("ON ada:" + str(start_button))
     elif (feed_id == "mode"):
         global MODE
         if (payload == "1"):
