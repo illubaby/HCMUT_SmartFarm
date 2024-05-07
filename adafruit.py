@@ -24,7 +24,6 @@ def message(client , feed_id , payload):
     print("Da gui: " + payload + ", feed id: " + feed_id)
     if (feed_id == "start-button"):
         if (payload == "1"):
-            global START_BUTTON
             START_BUTTON = True
             print("ON ada:" + str(START_BUTTON))
     elif (feed_id == "mode"):
