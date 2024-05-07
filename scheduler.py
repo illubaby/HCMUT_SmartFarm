@@ -88,6 +88,7 @@ while True:
         if (currentMoisture < 50 and currentMoisture > 30):
             pass
         if (START_BUTTON):
+            print("HAHAHAHA")
             client.publish("humid", currentMoisture)
             client.publish("temp", currentTemp)
             if (MODE == 1):
@@ -98,7 +99,6 @@ while True:
                 Mode3()
             setDevice1(True, MIXER_1_Relay)
             client.publish("current-device", "MIXER 1")
-
             next_state=MIXER_1
             set_timeout(MIXER_1_TIMEOUT)
             START_BUTTON = False
