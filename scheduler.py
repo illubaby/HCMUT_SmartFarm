@@ -2,6 +2,7 @@ import time
 from main import *
 import random
 from adafruit import *
+from adafruit import START_BUTTON
 
 IDLE = 0
 MIXER_1 = 1
@@ -86,9 +87,9 @@ while True:
         print("START BUTTON" + str(START_BUTTON))
         currentTemp = readTemperature()
         currentMoisture = readMoisture()
-        # if (currentMoisture < 50 and currentMoisture > 30):
-        #     pass
-        if (START_BUTTON):
+        if (currentMoisture < 50 and currentMoisture > 30):
+            pass
+        if (START_BUTTON == True):
             print("HAHAHAHA")
             client.publish("humid", currentMoisture)
             client.publish("temp", currentTemp)
@@ -175,7 +176,7 @@ while True:
             next_state=MIXER_1
             set_timeout(MIXER_1_TIMEOUT)
             if (CYCLE <= 0):
-                START_BUTTON = False
+                # START_BUTTON = False
                 next_state=IDLE
             else:
                 setDevice1(True, MIXER_1_Relay)
