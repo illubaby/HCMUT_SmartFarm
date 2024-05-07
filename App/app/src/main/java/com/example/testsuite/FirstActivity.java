@@ -34,7 +34,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class FirstActivity extends AppCompatActivity {
     Button btn1, btn2, btn3;
-    TextView txtTemp, txtHumi, txtIllu;
+    TextView txtTemp, txtHumi, txtIllu, txtDeviceStatus;
     LineChart mChartTemp, mChartHumi, mChartIllu;
 
     MQTTHelper mqttHelper;
@@ -49,24 +49,14 @@ public class FirstActivity extends AppCompatActivity {
             Intent intent = new Intent(this, SecondActivity.class);
             startActivity(intent);
         });
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn2.setOnClickListener(e -> {
-            Intent intent = new Intent(this, ThirdActivity.class);
-            startActivity(intent);
-        });
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn3.setOnClickListener(e -> {
-            Intent intent = new Intent(this, FourthActivity.class);
-            startActivity(intent);
-        });
 
         txtTemp = (TextView) findViewById(R.id.txt_temp);
         txtHumi = (TextView) findViewById(R.id.txt_humi);
         txtIllu = (TextView) findViewById(R.id.txt_illu);
         mChartTemp = findViewById(R.id.lineChartTemp);
         mChartHumi = findViewById(R.id.lineChartHumi);
-        mChartIllu = findViewById(R.id.lineChartIllu);
-
+        //mChartIllu = findViewById(R.id.lineChartIllu);
+        txtDeviceStatus = findViewById(R.id.txtDeviceStatus);
         startMQTT();
     }
 
@@ -86,9 +76,9 @@ public class FirstActivity extends AppCompatActivity {
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Log.d("First",topic+ "***"+ message.toString());
-                if (topic.contains("V1")) {
+                if (topic.contains("temp")) {
                     txtTemp.setText("Temperature: " + message.toString() + "°C");
-                    Log.d("V1",topic+ "***"+ message.toString());
+                    Log.d("temp",topic+ "***"+ message.toString());
 
                     float tempValue;
                     try {
@@ -99,9 +89,9 @@ public class FirstActivity extends AppCompatActivity {
                         return;
                     }
                 }
-                else if (topic.contains("V2")) {
+                else if (topic.contains("humid")) {
                     txtHumi.setText("Humidity: " + message.toString() + "%");
-                    Log.d("V2",topic+ "***"+ message.toString());
+                    Log.d("humid",topic+ "***"+ message.toString());
 
                     float tempValue;
                     try {
@@ -113,9 +103,9 @@ public class FirstActivity extends AppCompatActivity {
                     }
 
                 }
-                else if (topic.contains("V3")) {
+                else if (topic.contains("sonar")) {
                     txtIllu.setText("Illumination: " + message.toString() + "lx");
-                    Log.d("V3",topic+ "***"+ message.toString());
+                    Log.d("light",topic+ "***"+ message.toString());
 
                     float tempValue;
                     try {
@@ -127,6 +117,10 @@ public class FirstActivity extends AppCompatActivity {
                     }
 
                 }
+                else if (topic.contains("current_device")) {
+                    Log.d("current_device", "current_device ");
+                    displayDeviceStatus(message.toString());
+                }
             }
 
             private LineDataSet createSet() {
@@ -135,7 +129,10 @@ public class FirstActivity extends AppCompatActivity {
                 // Customize the dataset appearance here
                 return set;
             }
-
+            private void displayDeviceStatus(String deviceName) {
+                txtDeviceStatus.setVisibility(View.VISIBLE); // Make sure the TextView is visible
+                txtDeviceStatus.setText("Current Device: \n" + deviceName);
+            }
             private void displayChart(float tempValue, LineChart mChart) {
                     LineData data = mChart.getData();
                     if (data == null) {

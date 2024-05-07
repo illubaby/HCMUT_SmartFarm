@@ -4,8 +4,9 @@
     android:id="@+id/activity_one"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FirstActivity"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".FirstActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -15,15 +16,16 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
+            android:gravity="center"
             android:text="BKU Smart Office"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:gravity="center"/>
+            android:textStyle="bold" />
+
         <ImageView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:src="@mipmap/hcmut_icon"/>
+            android:src="@mipmap/hcmut_icon" />
     </LinearLayout>
 
     <LinearLayout
@@ -34,11 +36,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:text="Dashboard"
             android:textSize="30sp"
-            android:textStyle="bold"
-            android:gravity="center">
-        </TextView>
+            android:textStyle="bold"></TextView>
     </LinearLayout>
 
     <LinearLayout
@@ -50,11 +51,11 @@
             android:id="@+id/txt_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/temp"
             android:text="Temperature: "
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:textColor="#ff0000"
-            android:drawableLeft="@drawable/temp"/>
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -78,11 +79,11 @@
             android:id="@+id/txt_humi"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/humi"
             android:text="Humidity: "
-            android:textSize="24sp"
-            android:textStyle="bold"
             android:textColor="#0000ff"
-            android:drawableLeft="@drawable/humi"/>
+            android:textSize="24sp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -93,7 +94,7 @@
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChartHumi"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="100dp" />
     </LinearLayout>
 
 
@@ -106,36 +107,56 @@
             android:id="@+id/txt_illu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Illumination: "
-            android:textSize="24sp"
-            android:textStyle="bold"
+            android:drawableLeft="@drawable/baseline_terminal_24"
+            android:text="Terminal: "
             android:textColor="#cfcf04"
-            android:drawableLeft="@drawable/illu"/>
-    </LinearLayout>
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
+    </LinearLayout>
+    <!-- Adding terminal-like TextView for device status -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical">
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChartIllu"
+        <TextView
+            android:id="@+id/txtDeviceStatus"
             android:layout_width="match_parent"
-            android:layout_height="100dp"/>
+            android:layout_height="match_parent"
+            android:background="#FF2E2E2E"
+            android:textColor="#00FF00"
+            android:fontFamily="monospace"
+            android:padding="16dp"
+            android:textSize="14sp"
+            android:layout_marginTop="8dp"
+            android:text="Device status will appear here..."
+            android:visibility="gone" />
     </LinearLayout>
+
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="2">-->
+
+<!--        <com.github.mikephil.charting.charts.LineChart-->
+<!--            android:id="@+id/lineChartIllu"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="100dp" />-->
+<!--    </LinearLayout>-->
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0">
-    </LinearLayout>
+        android:layout_weight="0"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:baselineAligned="false"
+        android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -148,13 +169,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/chart_line"/>
+                android:src="@drawable/chart_line" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -168,54 +189,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_centerInParent="true"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:src="@drawable/toggle_switch"/>
+                android:src="@drawable/toggle_switch" />
         </RelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/border">
 
-            <Button
-                android:id="@+id/btn2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:background="@android:color/transparent"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/timeline"/>
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/border">
-
-            <Button
-                android:id="@+id/btn3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:background="@android:color/transparent"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:src="@drawable/list_solid"/>
-        </RelativeLayout>
 
 
     </LinearLayout>

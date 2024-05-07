@@ -1,6 +1,6 @@
 import time                                                                                                                                                                   
 import serial.tools.list_ports   
-from adafruit import *                                                             
+                                                             
 
 soilMoistureID = 2
 soilTemperatureID = 3
@@ -75,9 +75,11 @@ def setDevice1(state,ID):
     relay1_OFF = [ID, 6, 0, 0, 0, 0, 137, 249]
     relay1_ON[6] ,relay1_ON[7] = crc16_modbus_recheck(bytes(relay1_ON[0:6]))
     relay1_OFF[6] ,relay1_OFF[7] = crc16_modbus_recheck(bytes(relay1_OFF[0:6]))                                                                                                                                
-    if state == True:                                                                                                                                                   
+    if state == True:
+        print("Turn on relay " + str(ID))                                                                                                                                                
         ser.write(relay1_ON)                                                                                                                                                 
-    else:                                                                                                                                                                       
+    else:
+        print("Turn of relay " + str(ID))                                                                                                                                                                     
         ser.write(relay1_OFF)                                                                                                                                                  
     # time.sleep(1)   
     print("respond: ")                                                                                                                                                          
@@ -115,9 +117,10 @@ soil_moisture[len(soil_moisture)-2], soil_moisture[len(soil_moisture)-1]=crc16_m
 
 def readMoisture():                                                                                                                                                             
     serial_read_data()                                                                        
-    ser.write(soil_moisture)                                                                                                                                                          
-    # time.sleep(1)                                                                                                                                                                       
-    return serial_read_data()                                                                 
+    ser.write(soil_moisture)
+    moisture = serial_read_data()                                                                                                                                                      
+    print("Soil moisture:" + str(moisture))                                                                                                                                                                      
+    return moisture                                                                
 
 
 sonar = [sonarID, 3, 0, 7, 0, 1, 53, 203]                                                   
@@ -126,10 +129,11 @@ sonar[len(sonar)-2], sonar[len(sonar)-1]=crc16_modbus_recheck(bytes(sonar[0:len(
 def readSonarSensor():
     serial_read_data()                                                                        
     ser.write(sonar)                                                                                                                                                          
-    # time.sleep(1)                                                                                                                                                                       
-    return serial_read_data()
+    distance = serial_read_data() 
+    print("Water distance:" + str(distance))                                                                                                                                                                 
+    return distance
 
-while True:                                                                                   
+# while True:                                                                                   
 #     print("TEST ACTUATOR")                                                                                                                                                  
 #     setDevice1(True,2)                                                                                                                                                            
 #     time.sleep(2)  
@@ -140,9 +144,9 @@ while True:
                                                                                                                                                                                    
     print("TEST SENSOR")                                                                      
                                                                                   
-    print("Moisture: ")                                                                       
-    moisture= readMoisture()                                                                          
-    print(moisture)
+    # print("Moisture: ")                                                                       
+    # moisture= readMoisture()                                                                          
+    # print(moisture)
 #     client.publish("sonar", moisture)
 #     client.publish("pump-in", moisture)                                                                                                                                                           
 #     client.publish("pump-out", moisture)                                                                                                                                                           

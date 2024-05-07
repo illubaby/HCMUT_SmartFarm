@@ -24,25 +24,13 @@ import java.nio.charset.Charset;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
 public class SecondActivity extends AppCompatActivity {
-    Button btn0, btn1, btn2, btn3;
+    Button btn0;
     Switch btnLight;
-    ImageView imgLight;
-    ImageView mainImgColor;
-    ImageView redImgColor;
-    ImageView orangeImgColor;
-    ImageView yellowImgColor;
-    ImageView greenImgColor;
-    ImageView blueImgColor;
-    ImageView dark_blueImgColor;
-    ImageView purpleImgColor;
-    ImageView pinkImgColor;
-    ImageView brownImgColor;
-    ImageView bluepinkImgColor;
-    ImageView greyImgColor;
-    TextView txtSpeed;
-    Slider sliderFan;
     MQTTHelper mqttHelper;
-
+    Button mode1Button;
+    Button mode2Button;
+    Button mode3Button;
+    Button[] modeButtons;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,33 +40,53 @@ public class SecondActivity extends AppCompatActivity {
             Intent intent = new Intent(this, FirstActivity.class);
             startActivity(intent);
         });
-        btn2 = (Button) findViewById(R.id.btn2);
-        btn2.setOnClickListener(e -> {
-            Intent intent = new Intent(this, ThirdActivity.class);
-            startActivity(intent);
-        });
-        btn3 = (Button) findViewById(R.id.btn3);
-        btn3.setOnClickListener(e -> {
-            Intent intent = new Intent(this, FourthActivity.class);
-            startActivity(intent);
-        });
 
         btnLight = (Switch) findViewById(R.id.btn_light);
-        imgLight = (ImageView) findViewById(R.id.img_light);
+
+        mode1Button = findViewById(R.id.mode1);
+        mode2Button = findViewById(R.id.mode2);
+        mode3Button = findViewById(R.id.mode3);
+        modeButtons = new Button[]{mode1Button, mode2Button, mode3Button};
+        for (Button modeButton : modeButtons) {
+            modeButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    handleModeSelection((Button) v);
+
+                }
+            });
+        }
         btnLight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    imgLight.setImageResource(R.mipmap.bulb_on);
-                    sendDataMQTT("illubaby/feeds/V1", "1");
+                    //btnLight.setImageResource(R.mipmap.bulb_on);
+                    sendDataMQTT("Junnn123/feeds/start-button", "1");
                 } else {
-                    imgLight.setImageResource(R.mipmap.bulb_off);
-                    sendDataMQTT("illubaby/feeds/V1", "0");
+                    //btnLight.setImageResource(R.mipmap.bulb_off);
+                    sendDataMQTT("Junnn123/feeds/start-button", "0");
                 }
             }
         });
 
         startMQTT();
+    }
+    private void handleModeSelection(Button selectedButton) {
+        // Assuming modeButtons are in the order of mode1, mode2, mode3 in the array
+        for (int i = 0; i < modeButtons.length; i++) {
+            if (modeButtons[i] == selectedButton) {
+                // Disable the selected button to indicate it's active
+                modeButtons[i].setEnabled(false);
+                modeButtons[i].setBackgroundColor(getResources().getColor(R.color.selectedColor));
+
+                // Sending the number (i + 1) as a string
+                sendDataMQTT("Junnn123/feeds/mode", String.valueOf(i + 1));
+            } else {
+                // Enable all other buttons
+                modeButtons[i].setEnabled(true);
+                modeButtons[i].setBackgroundColor(getResources().getColor(R.color.deselectedColor));
+            }
+        }
     }
 
     public void sendDataMQTT(String topic, String value){
@@ -112,7 +120,7 @@ public class SecondActivity extends AppCompatActivity {
             @Override
             public void messageArrived(String topic, MqttMessage message) throws Exception {
                 Log.d("Test",topic+ "***"+ message.toString());
-                if (topic.endsWith("V1")) {
+                if (topic.endsWith("start-button")) {
                     btnLight.setChecked(message.toString().equals("1"));
                 }
             }
@@ -121,6 +129,7 @@ public class SecondActivity extends AppCompatActivity {
             public void deliveryComplete(IMqttDeliveryToken token) {
 
             }
+
         });
     }
 }
