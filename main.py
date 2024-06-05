@@ -79,7 +79,7 @@ def setDevice1(state,ID):
         print("Turn on relay " + str(ID))                                                                                                                                                
         ser.write(relay1_ON)                                                                                                                                                 
     else:
-        print("Turn of relay " + str(ID))                                                                                                                                                                     
+        print("Turn off relay " + str(ID))                                                                                                                                                                     
         ser.write(relay1_OFF)                                                                                                                                                  
     # time.sleep(1)   
     print("respond: ")                                                                                                                                                          

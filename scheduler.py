@@ -88,7 +88,7 @@ while True:
         if (currentMoisture < 50 and currentMoisture > 30):
             pass
         if (isStart()):
-            print("HAHAHAHA")
+            # print("HAHAHAHA")
             client.publish("humid", currentMoisture)
             client.publish("temp", currentTemp)
             if (isMode() == 1):
